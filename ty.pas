@@ -40,6 +40,7 @@ Interface
   The following command line parameters were used:
     ty.h
 }
+uses ctypes;
 
 {$IFDEF FPC}
 {$PACKRECORDS C}
@@ -47,18 +48,16 @@ Interface
 
 Type 
   DB_ADDR = Record
-    recid : dword;
-    recno : dword;
+    recid : cuint32;
+    recno : cuint32;
   End;
 
-  Pbyte  = ^byte;
-  Pchar  = ^char;
+  //Pbyte  = ^byte;
+  // Pchar  = ^char;
   PDB_ADDR  = ^DB_ADDR;
-  Pdword  = ^dword;
-  Plongint  = ^longint;
 
-  TProcKeyBuild=Procedure (_para1:Pchar; _para2:longword; _para3:longword);
-  TProcSetErr  =Procedure (_para1:longint; _para2:longint);
+  TProcKeyBuild=Procedure (_para1:Pchar; _para2:cuint32; _para3:cuint32);
+  TProcSetErr  =Procedure (_para1:cint32; _para2:cint32);
 
 
 
@@ -103,61 +102,61 @@ Const
 
 
 Var 
-  curr_rec : dword;  cvar;  external;
-  db_status : longint;  cvar;  external;
+  curr_rec : cuint32;  cvar;  external;
+  db_status : cint32;  cvar;  external;
   { See S_... constants				 }
-  db_subcode : longint;  cvar;  external;
+  db_subcode : cint32;  cvar;  external;
 
 {---------- Function prototypes ------------------------------------------- }
 
-Function d_block: integer;cdecl;external cDllName;
-Function d_unblock: integer;cdecl;external cDllName;
-Function d_setfiles(_para1:longint): integer;cdecl;external cDllName;
-//Function d_keybuild(_para1:Procedure (_para1:Pchar; _para2:longword; _para3:longword)): integer;cdecl;external cDllName;
-Function d_keybuild(_para1:TProcKeyBuild): integer;cdecl;external cDllName;
-Function d_open(_para1:Pchar; _para2:Pchar): integer;cdecl;external cDllName;
-Function d_close: integer;cdecl;external cDllName;
-Function d_destroy(_para1:Pchar): integer;cdecl;external cDllName;
-Function d_keyfind(_para1:dword; _para2:pointer): integer;cdecl;external cDllName;
-Function d_keyfrst(_para1:dword): integer;cdecl;external cDllName;
-Function d_keylast(_para1:dword): integer;cdecl;external cDllName;
-Function d_keynext(_para1:dword): integer;cdecl;external cDllName;
-Function d_keyprev(_para1:dword): integer;cdecl;external cDllName;
-Function d_keyread(_para1:pointer): integer;cdecl;external cDllName;
-Function d_fillnew(_para1:dword; _para2:pointer): integer;cdecl;external cDllName;
-Function d_keystore(_para1:dword): integer;cdecl;external cDllName;
-Function d_recwrite(_para1:pointer): integer;cdecl;external cDllName;
-Function d_recread(_para1:pointer): integer;cdecl;external cDllName;
-Function d_crread(_para1:dword; _para2:pointer): integer;cdecl;external cDllName;
-Function d_delete: integer;cdecl;external cDllName;
-Function d_recfrst(_para1:dword): integer;cdecl;external cDllName;
-Function d_reclast(_para1:dword): integer;cdecl;external cDllName;
-Function d_recnext(_para1:dword): integer;cdecl;external cDllName;
-Function d_recprev(_para1:dword): integer;cdecl;external cDllName;
-Function d_crget(_para1:PDB_ADDR): integer;cdecl;external cDllName;
-Function d_crset(_para1:PDB_ADDR): integer;cdecl;external cDllName;
-Function d_dbget(_para1:Plongint): integer;cdecl;external cDllName;
-Function d_dbset(_para1:longint): integer;cdecl;external cDllName;
-Function d_records(_para1:dword; _para2:Pdword): integer;cdecl;external cDllName;
-Function d_keys(_para1:dword): integer;cdecl;external cDllName;
-Function d_dbdpath(_para1:Pchar): integer;cdecl;external cDllName;
-Function d_dbfpath(_para1:Pchar): integer;cdecl;external cDllName;
-Function d_reclock(_para1:PDB_ADDR; _para2:longint): integer;cdecl;external cDllName;
-Function d_recunlock(_para1:PDB_ADDR): integer;cdecl;external cDllName;
-Function d_getsequence(_para1:dword; _para2:Pdword): integer;cdecl;external cDllName;
-Function d_replicationlog(_para1:longint): integer;cdecl;external cDllName;
-Function d_addsite(_para1:dword): integer;cdecl;external cDllName;
-Function d_delsite(_para1:dword): integer;cdecl;external cDllName;
-Function d_deltable(_para1:dword; _para2:dword): integer;cdecl;external cDllName;
-Function d_getkeysize(_para1:dword; _para2:Pdword): integer;cdecl;external cDllName;
-Function d_getrecsize(_para1:dword; _para2:Pdword): integer;cdecl;external cDllName;
-Function d_getfieldtype(_para1:dword; _para2:Pdword): integer;cdecl;external cDllName;
-Function ty_ustrcmp(_para1:Pbyte; _para2:Pbyte): integer;cdecl;external cDllName;
-Function d_getkeyid(_para1:dword; _para2:Pdword): integer;cdecl;external cDllName;
-Function d_getforeignkeyid(_para1:dword; _para2:dword; _para3:Pdword): integer;cdecl;external cDllName;
-Function d_makekey(_para1:dword; _para2:pointer; _para3:pointer): integer;cdecl;external cDllName;
-//Function d_seterrfn(_para1:Procedure (_para1:longint; _para2:longint)): integer;cdecl;external cDllName;
-Function d_seterrfn(_para1:TProcSetErr): integer;cdecl;external cDllName;
+Function d_block: cint16;cdecl;external cDllName;
+Function d_unblock: cint16;cdecl;external cDllName;
+Function d_setfiles(_para1:cint32): cint16;cdecl;external cDllName;
+//Function d_keybuild(_para1:Procedure (_para1:Pchar; _para2:cuint32; _para3:cuint32)): cint16;cdecl;external cDllName;
+Function d_keybuild(_para1:TProcKeyBuild): cint16;cdecl;external cDllName;
+Function d_open(_para1:Pchar; _para2:Pchar): cint16;cdecl;external cDllName;
+Function d_close: cint16;cdecl;external cDllName;
+Function d_destroy(_para1:Pchar): cint16;cdecl;external cDllName;
+Function d_keyfind(_para1:cuint32; _para2:pointer): cint16;cdecl;external cDllName;
+Function d_keyfrst(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_keylast(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_keynext(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_keyprev(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_keyread(_para1:pointer): cint16;cdecl;external cDllName;
+Function d_fillnew(_para1:cuint32; _para2:pointer): cint16;cdecl;external cDllName;
+Function d_keystore(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_recwrite(_para1:pointer): cint16;cdecl;external cDllName;
+Function d_recread(_para1:pointer): cint16;cdecl;external cDllName;
+Function d_crread(_para1:cuint32; _para2:pointer): cint16;cdecl;external cDllName;
+Function d_delete: cint16;cdecl;external cDllName;
+Function d_recfrst(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_reclast(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_recnext(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_recprev(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_crget(_para1:PDB_ADDR): cint16;cdecl;external cDllName;
+Function d_crset(_para1:PDB_ADDR): cint16;cdecl;external cDllName;
+Function d_dbget(_para1:Plongint): cint16;cdecl;external cDllName;
+Function d_dbset(_para1:cint32): cint16;cdecl;external cDllName;
+Function d_records(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
+Function d_keys(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_dbdpath(_para1:Pchar): cint16;cdecl;external cDllName;
+Function d_dbfpath(_para1:Pchar): cint16;cdecl;external cDllName;
+Function d_reclock(_para1:PDB_ADDR; _para2:cint32): cint16;cdecl;external cDllName;
+Function d_recunlock(_para1:PDB_ADDR): cint16;cdecl;external cDllName;
+Function d_getsequence(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
+Function d_replicationlog(_para1:cint32): cint16;cdecl;external cDllName;
+Function d_addsite(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_delsite(_para1:cuint32): cint16;cdecl;external cDllName;
+Function d_deltable(_para1:cuint32; _para2:cuint32): cint16;cdecl;external cDllName;
+Function d_getkeysize(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
+Function d_getrecsize(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
+Function d_getfieldtype(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
+Function ty_ustrcmp(_para1:Pbyte; _para2:Pbyte): cint16;cdecl;external cDllName;
+Function d_getkeyid(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
+Function d_getforeignkeyid(_para1:cuint32; _para2:cuint32; _para3:pcuint32): cint16;cdecl;external cDllName;
+Function d_makekey(_para1:cuint32; _para2:pointer; _para3:pointer): cint16;cdecl;external cDllName;
+//Function d_seterrfn(_para1:Procedure (_para1:cint32; _para2:longint)): cint16;cdecl;external cDllName;
+Function d_seterrfn(_para1:TProcSetErr): cint16;cdecl;external cDllName;
 
 //{$endif}
   { end-of-file  }
