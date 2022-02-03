@@ -135,7 +135,7 @@ Function d_recnext(_para1:cuint32): cint16;cdecl;external cDllName;
 Function d_recprev(_para1:cuint32): cint16;cdecl;external cDllName;
 Function d_crget(_para1:PDB_ADDR): cint16;cdecl;external cDllName;
 Function d_crset(_para1:PDB_ADDR): cint16;cdecl;external cDllName;
-Function d_dbget(_para1:Plongint): cint16;cdecl;external cDllName;
+Function d_dbget(_para1:pcint32): cint16;cdecl;external cDllName;
 Function d_dbset(_para1:cint32): cint16;cdecl;external cDllName;
 Function d_records(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
 Function d_keys(_para1:cuint32): cint16;cdecl;external cDllName;
@@ -151,7 +151,7 @@ Function d_deltable(_para1:cuint32; _para2:cuint32): cint16;cdecl;external cDllN
 Function d_getkeysize(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
 Function d_getrecsize(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
 Function d_getfieldtype(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
-Function ty_ustrcmp(_para1:Pbyte; _para2:Pbyte): cint16;cdecl;external cDllName;
+Function ty_ustrcmp(_para1:pcuint8; _para2:pcuint8): cint16;cdecl;external cDllName;
 Function d_getkeyid(_para1:cuint32; _para2:pcuint32): cint16;cdecl;external cDllName;
 Function d_getforeignkeyid(_para1:cuint32; _para2:cuint32; _para3:pcuint32): cint16;cdecl;external cDllName;
 Function d_makekey(_para1:cuint32; _para2:pointer; _para3:pointer): cint16;cdecl;external cDllName;
