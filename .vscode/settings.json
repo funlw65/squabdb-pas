@@ -1,0 +1,10 @@
+{
+    "astyle.cmd_options": [
+      "-A3",
+      "-s2"
+    ],
+    "files.associations": {
+      "string.h": "c"
+    }
+}
+ 
