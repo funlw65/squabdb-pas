@@ -1,3 +1,5 @@
+# Further updates on https://gitlab.com/funlw65/squabdb-pas
+
 # SquabDB
 SquabDB is a little Pigeon Database intended as a typhoon database engine demonstration. Written in Pascal language.
 The graphical interface uses raylib 4.0 and raygui 3.0
